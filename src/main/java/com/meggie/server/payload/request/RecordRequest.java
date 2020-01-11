@@ -8,7 +8,7 @@ public class RecordRequest {
 
     private Integer distance;
 
-    private boolean isPending;
+    private Float amount;
 
     public Integer getMileage() {
         return this.mileage;
@@ -26,16 +26,12 @@ public class RecordRequest {
         this.distance = distance;
     }
 
-    public boolean isIsPending() {
-        return this.isPending;
+    public Float getAmount() {
+        return this.amount;
     }
 
-    public boolean getIsPending() {
-        return this.isPending;
-    }
-
-    public void setIsPending(boolean isPending) {
-        this.isPending = isPending;
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 
 }
