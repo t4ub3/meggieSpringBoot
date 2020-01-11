@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.meggie.server.models.ERole;
 import com.meggie.server.models.Role;
 import com.meggie.server.models.User;
-import com.meggie.server.payload.request.LoginRequest;
+import com.meggie.server.payload.request.SigninRequest;
 import com.meggie.server.payload.request.SignupRequest;
 import com.meggie.server.payload.response.JwtResponse;
 import com.meggie.server.payload.response.MessageResponse;
@@ -52,10 +52,10 @@ public class AuthController {
 	JwtUtils jwtUtils;
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody SigninRequest signinRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(signinRequest.getUsername(), signinRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
