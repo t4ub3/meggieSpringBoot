@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.meggie.server.models.AllRecords;
 import com.meggie.server.models.DrivingRecord;
 import com.meggie.server.models.FuelRecord;
 import com.meggie.server.models.PaymentRecord;
@@ -137,5 +138,13 @@ public class RecordController {
 		paymentRecordRepository.save(paymentRecord);
 
 		return "added Payment Record successfully";
+	}
+
+	// ALL RECORDS
+
+	@GetMapping("/all")
+	@PreAuthorize("hasRole('USER')")
+	public AllRecords getAllRecords() {
+		return new AllRecords(paymentRecordRepository.findAll(), drivingRecordRepository.findAll(), fuelRecordRepository.findAll());
 	}
 }
